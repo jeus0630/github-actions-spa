@@ -132,10 +132,10 @@ jobs:
   approve:
     if: needs.set-environment.outputs.environment == 'staging'
     runs-on: ubuntu-latest
-    envirionment: approve
+    environment: approve
     needs:
     - set-environment
-    - deploy
+    - deploy-s3
     steps:
     - name: approve
       run: |
