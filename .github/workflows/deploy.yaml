@@ -135,7 +135,7 @@ jobs:
     environment: approve
     needs:
     - set-environment
-    - deploy
+    - deploy-s3
     steps:
     - name: approve
       run: |
