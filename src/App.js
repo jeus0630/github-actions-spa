@@ -59,7 +59,7 @@ function App() {
                 border: "1px solid black"
               }}>
                 <div>
-                  사진
+                  사진 !!!
                 </div>
                 <div>
                   <p>
