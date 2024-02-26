@@ -24,7 +24,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
-      - name: Cache npm modules
+      - name: Cache modules
         uses: actions/cache@v3
         with:
           path: ~/.yarn
@@ -83,7 +83,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
-      - name: Cache npm modules
+      - name: Cache modules
         uses: actions/cache@v3
         with:
           path: ~/.yarn
@@ -168,15 +168,12 @@ jobs:
           restore-keys: ${{ runner.os }}-node-
       - name: Install Dependencies
         run: |
-          cd my-app
           npm ci
       - name: Test App
         run: |
-          cd my-app
           npm run test
       - name: Build
         run: |
-          cd my-app
           npm run build
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -185,7 +182,6 @@ jobs:
           role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
       - name: Deploy S3
         run: |
-          cd my-app
           aws s3 sync ./build s3://${{ vars.S3_BUCKET }}
       - name: CloudFront Invalidation
         run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUD_FRONT_ID }} --paths "/*"
